@@ -3,7 +3,7 @@
 USERNAME=root
 PASSWORD=secret
 
-.PHONY: postgres createdb dropdb migrateup migratedown build
+.PHONY: postgres createdb dropdb migrateup migratedown build sqlc
 
 postgres:
 	docker run --name postgres12 -p 5432:5432 -e POSTGRES_USER=$(USERNAME) -e POSTGRES_PASSWORD=$(PASSWORD) -d postgres:12-alpine
@@ -22,6 +22,9 @@ migratedown:
 
 initschema:
 	migrate create -ext sql -dir db/migrations -seq init_schema
+
+sqlc:
+	sqlc generate
 
 # =============================================================
 # for first time, we can run this
