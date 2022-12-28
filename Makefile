@@ -26,6 +26,9 @@ initschema:
 sqlc:
 	sqlc generate
 
+test:
+	go test -v -cover ./...
+
 # =============================================================
 # for first time, we can run this
 # write sql command for migrate up & down, and then run `migrateup`
